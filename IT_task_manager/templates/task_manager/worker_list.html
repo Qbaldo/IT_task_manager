@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Workers list
+  </h1>
+  <ul>
+    {% for worker in worker_list %}
+      <li>
+        {{ worker.username }} - {{ worker.first_name }} {{ worker.last_name }}
+      </li>
+    {% empty %}
+      <li>No workers yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

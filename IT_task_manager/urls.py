@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from views import position_list, worker_list
+from IT_task_manager.views import position_list, worker_list
 
 
 urlpatterns = [
