@@ -15,7 +15,8 @@ class Worker(AbstractUser):
     position = models.ForeignKey(Position, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.position.name} {self.first_name} {self.last_name}"
+        position_name = self.position.name if self.position else "Brak stanowiska"
+        return f"{position_name} {self.first_name} {self.last_name}"
 
 
 class TaskType(models.Model):
