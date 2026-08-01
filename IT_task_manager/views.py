@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import DetailView
 from .models import Position, Worker, Task, TaskType
 from .forms import PositionForm
 
@@ -25,6 +26,10 @@ def position_delete(request, pk):
 def worker_list(request):
     workers = Worker.objects.all()
     return render(request, 'task_manager/worker_list.html', {'workers': workers})
+
+def worker_detail(request, pk):
+    worker = get_object_or_404(Worker, pk=pk)
+    return render(request, 'task_manager/worker_detail.html', {'worker': worker})
 
 def task_list(request):
     tasks = Task.objects.all()
