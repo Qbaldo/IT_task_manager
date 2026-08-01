@@ -4,6 +4,7 @@
   <h1>
     Workers list
   </h1>
+  <a href="{% url 'worker-create' %}" class="btn btn-primary mb-3">Add Worker</a>
   <ul>
     {% for worker in workers %}
       <li>

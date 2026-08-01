@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import DetailView
 from .models import Position, Worker, Task, TaskType
-from .forms import PositionForm
+from .forms import PositionForm, WorkerForm
 
 
 def position_list(request):
@@ -30,6 +30,16 @@ def worker_list(request):
 def worker_detail(request, pk):
     worker = get_object_or_404(Worker, pk=pk)
     return render(request, 'task_manager/worker_detail.html', {'worker': worker})
+
+def worker_create(request):
+    if request.method == 'POST':
+        form = WorkerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('worker-list')
+    else:
+        form = WorkerForm()
+    return render(request, 'task_manager/worker_form.html', {'form': form})
 
 def task_list(request):
     tasks = Task.objects.all()
