@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Position, Worker, Task, TaskType
 from .forms import PositionForm
 
@@ -16,6 +16,11 @@ def position_create(request):
     else:
         form = PositionForm()
     return render(request, 'task_manager/position_form.html', {'form': form})
+
+def position_delete(request, pk):
+    position = get_object_or_404(Position, pk=pk)
+    position.delete()
+    return redirect('position-list')
 
 def worker_list(request):
     workers = Worker.objects.all()

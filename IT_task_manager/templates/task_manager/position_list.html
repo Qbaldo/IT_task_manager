@@ -4,10 +4,11 @@
   <h1>
     Positions list
   </h1>
+<a href="{% url 'position-create' %}" class="btn btn-primary mb-3">Add Position</a>
   <ul>
     {% for position in positions %}
       <li>
-        {{ position.name }}
+        {{ position.name }} <a href="{% url 'position-delete' position.pk %}" class="btn btn-danger" onclick="return confirm('spowoduje usunięcie wszystkich pracowników przypisanych do tego stanowiska');">Delete</a>
       </li>
     {% empty %}
       <li>No positions yet.</li>

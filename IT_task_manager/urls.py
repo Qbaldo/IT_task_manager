@@ -20,7 +20,8 @@ from IT_task_manager.views import (position_list,
                                    worker_list,
                                    task_type_list,
                                    task_list,
-                                   position_create,)
+                                   position_create,
+                                   position_delete,)
 
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
     path('tasks/', task_list, name='task-list'),
     path('task-types/', task_type_list, name='task-type-list'),
     path('position_create/' , position_create, name='position-create'),
+    path('position/<int:pk>/delete', position_delete, name='position-delete'),
 ]
