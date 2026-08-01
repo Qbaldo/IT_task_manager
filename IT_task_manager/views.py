@@ -41,6 +41,11 @@ def worker_create(request):
         form = WorkerForm()
     return render(request, 'task_manager/worker_form.html', {'form': form})
 
+def worker_delete(request, pk):
+    worker = get_object_or_404(Worker, pk=pk)
+    worker.delete()
+    return redirect('worker-list')
+
 def task_list(request):
     tasks = Task.objects.all()
     return render(request, 'task_manager/task_list.html', {'tasks': tasks})

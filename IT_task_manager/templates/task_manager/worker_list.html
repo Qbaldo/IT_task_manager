@@ -10,7 +10,6 @@
       <li>
         <a href="{% url 'worker-detail' worker.id %}">
           {{ worker.username }} - {{ worker.first_name }} {{ worker.last_name }}
-        </a>
       </li>
     {% empty %}
       <li>No workers yet.</li>
