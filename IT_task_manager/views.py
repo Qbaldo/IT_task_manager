@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import DetailView
 from .models import Position, Worker, Task, TaskType
-from .forms import PositionForm, WorkerForm
+from .forms import PositionForm, WorkerForm, TaskTypeForm
 
 
 def position_list(request):
@@ -52,4 +52,19 @@ def task_list(request):
 
 def task_type_list(request):
     task_types = TaskType.objects.all()
-    return render(request, 'task_manager/task_types_list.html', {'task_types': task_types})
+    return render(request, 'task_manager/task_type_list.html', {'task_type': task_types})
+
+def task_type_create(request):
+    if request.method == 'POST':
+        form = TaskTypeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('task-type-list')
+    else:
+        form = TaskTypeForm()
+    return render(request, 'task_manager/task_type_form.html', {'form': form})
+
+def task_type_delete(request, pk):
+    task_type = get_object_or_404(TaskType, pk=pk)
+    task_type.delete()
+    return redirect('task-type-list')

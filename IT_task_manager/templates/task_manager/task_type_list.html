@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Task Types</h1>
+  <a href="{% url 'task-type-create' %}" class="btn btn-primary mb-3">Add Task Type</a>
+  <ul>
+    {% for tasktype in task_type %}
+      <li>
+        {{ tasktype.name }} <a href="{% url 'task-type-delete' tasktype.pk %}" class="btn btn-danger" onclick="return confirm('Napewno');">Delete</a>
+      </li>
+    {% empty %}
+      <li>No Task Types yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Positions list
-  </h1>
+  <h1>Positions lis</h1>
 <a href="{% url 'position-create' %}" class="btn btn-primary mb-3">Add Position</a>
   <ul>
     {% for position in positions %}
