@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Task name: {{ task.name }}</h1>
+  <h2>Priority: {{ task.priority }}, Deadline {{ task.deadline }}</h2>
+  <h1>Is completed: {{task.is_completed}}</h1>
+  <ul>
+      <li><strong>Task Type:</strong> {{ task.task_type }}</li>
+      <li><strong>Description:</strong> {{ task.description }}</li>
+      <li><strong>Assignees:</strong> {{ task.assignees }}</li>
+
+  </ul>
+<a href="{% url 'task-delete' task.pk %}" class="btn btn-danger" onclick="return confirm('Delete?');">Delete</a>
+
+{% endblock %}
+
+

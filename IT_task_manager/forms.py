@@ -1,7 +1,7 @@
 
 
 from django import forms
-from .models import Position, Worker, TaskType
+from .models import Position, Worker, TaskType, Task
 
 
 class PositionForm(forms.ModelForm):
@@ -18,4 +18,9 @@ class WorkerForm(forms.ModelForm):
 class TaskTypeForm(forms.ModelForm):
     class Meta:
         model = TaskType
+        fields = '__all__'
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
         fields = '__all__'
