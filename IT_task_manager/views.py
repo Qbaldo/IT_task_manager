@@ -87,3 +87,11 @@ def task_type_delete(request, pk):
     task_type = get_object_or_404(TaskType, pk=pk)
     task_type.delete()
     return redirect('task-type-list')
+
+def index(request):
+    users_count = Worker.objects.count()
+    tasks_count = Task.objects.count()
+    return render(request, 'task_manager/index.html', {
+        'users_count': users_count,
+        'tasks_count': tasks_count
+    })
