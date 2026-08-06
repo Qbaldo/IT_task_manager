@@ -127,10 +127,23 @@ def task_type_delete(request, pk):
     task_type.delete()
     return redirect('task-type-list')
 
+@login_required(login_url='login')
 def index(request):
-    users_count = Worker.objects.count()
-    tasks_count = Task.objects.count()
+    active_tasks = Task.objects.filter(
+        assignees=request.user,
+        is_completed=False
+    )
+
+    completed_tasks = Task.objects.filter(
+        assignees=request.user,
+        is_completed=True
+    )
+
+    workers_count = Worker.objects.count()
+
     return render(request, 'task_manager/index.html', {
-        'users_count': users_count,
-        'tasks_count': tasks_count
+        'active_tasks': active_tasks,
+        'active_tasks_count': active_tasks.count(),
+        'completed_tasks_count': completed_tasks.count(),
+        'workers_count': workers_count,
     })
