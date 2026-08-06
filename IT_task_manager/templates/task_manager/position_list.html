@@ -1,15 +1,76 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Positions list</h1>
-<a href="{% url 'position-create' %}" class="btn btn-primary mb-3">Add Position</a>
-  <ul>
-    {% for position in positions %}
-      <li>
-        {{ position.name }} <a href="{% url 'position-delete' position.pk %}" class="btn btn-danger" onclick="return confirm('spowoduje usunięcie wszystkich pracowników przypisanych do tego stanowiska');">Delete</a>
-      </li>
-    {% empty %}
-      <li>No positions yet.</li>
-    {% endfor %}
-  </ul>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h1>
+        💼 Positions
+    </h1>
+
+    <a href="{% url 'position-create' %}"
+       class="btn btn-primary">
+        + Add Position
+    </a>
+
+</div>
+
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <table class="table table-hover mb-0">
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th class="text-end">Action</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+            {% for position in positions %}
+
+                <tr>
+
+                    <td>
+                        {{ position.name }}
+                    </td>
+
+
+                    <td class="text-end">
+
+                        <a href="{% url 'position-delete' position.pk %}"
+                           class="btn btn-outline-danger btn-sm"
+                           onclick="return confirm('You will delete all workers on this position?');">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+                    <td colspan="2" class="text-center text-muted">
+                        No Positions yet.
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
 {% endblock %}
