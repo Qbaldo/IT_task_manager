@@ -10,27 +10,17 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-          {% include 'sidebar.html' %}
-          {% if user.is_authenticated %}
-            <form action="{% url 'logout' %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-danger">Logout</button>
-            </form>
 
-          {% else %}
-            <form action="{% url 'login' %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-          {% endif %}
+  <body>
+  {% include 'navbar.html' %}
+  <div class="container-fluid">
+    <div class="row">
+      {% include 'sidebar.html' %}
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-0 mt-0">
-                {% block content %}{% endblock %}
-            </main>
-        </div>
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-0 mt-0">
+                  {% block content %}{% endblock %}
+      </main>
     </div>
-</body>
+  </div>
+  </body>
 </html>
