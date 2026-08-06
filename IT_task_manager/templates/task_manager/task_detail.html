@@ -10,7 +10,8 @@
       <li><strong>Assignees:</strong> {{ task.assignees }}</li>
 
   </ul>
-<a href="{% url 'task-delete' task.pk %}" class="btn btn-danger" onclick="return confirm('Delete?');">Delete</a>
+  <a href="{% url 'task-update' task.pk %}" class="btn btn-primary">Update</a>
+  <a href="{% url 'task-delete' task.pk %}" class="btn btn-danger" onclick="return confirm('Delete?');">Delete</a>
 
 {% endblock %}
 

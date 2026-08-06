@@ -9,6 +9,7 @@
       <li><strong>Position:</strong> {{ worker.position }}</li>
 
   </ul>
-<a href="{% url 'worker-delete' worker.pk %}" class="btn btn-danger" onclick="return confirm('Delete?');">Delete</a>
+  <a href="{% url 'worker-update' worker.pk %}" class="btn btn-primary">Update</a>
+  <a href="{% url 'worker-delete' worker.pk %}" class="btn btn-danger" onclick="return confirm('Delete?');">Delete</a>
 
 {% endblock %}

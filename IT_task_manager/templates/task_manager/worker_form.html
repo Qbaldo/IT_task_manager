@@ -3,10 +3,8 @@
 <h2>Add Worker</h2>
 <form method="post">
     {% csrf_token %}
-
     {{ form.as_p }}
+    <button type="submit">Save</button>
 
-    <button type="submit">Zapisz</button>
-    <a href="{% url 'worker-list' %}">Anuluj</a>
 </form>
 {% endblock %}
