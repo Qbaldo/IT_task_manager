@@ -2,26 +2,31 @@
   <div class="position-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">
+            🏠 Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{% url 'task-list' %}">
-            Task List
+            📋 Task List
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'worker-list' %}">
-            Workers List
+            👥 Workers List
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'task-type-list' %}">
-            Task Types
+            🏷 Task Types
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'position-list' %}">
-            Position List
+           💼 Position List
         </a>
       </li>
 
