@@ -35,7 +35,15 @@ class TaskForm(forms.ModelForm):
         widgets = {
             "deadline": forms.DateTimeInput(
                 attrs={
-                    "type": "datetime-local"
+                    "type": "datetime-local",
+                    "class": "form-control",
+                }
+            ),
+
+            "assignees": forms.SelectMultiple(
+                attrs={
+                    "class": "form-select",
+                    "size": 5,
                 }
             ),
         }

@@ -3,7 +3,10 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Position(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(
+        max_length=100,
+        unique=True,
+    )
 
     class Meta:
         ordering = ["name"]
@@ -21,7 +24,11 @@ class Worker(AbstractUser):
 
 
 class TaskType(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(
+        max_length=100,
+        unique=True
+    )
+
     class Meta:
         ordering = ["name"]
 

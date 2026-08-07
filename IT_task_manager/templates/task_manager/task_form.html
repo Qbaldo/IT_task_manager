@@ -13,11 +13,14 @@
 
     <div class="card-body">
 
-        <form method="post">
+        <div class="col-md-8 col-lg-7">
 
-            {% csrf_token %}
+            <form method="post">
 
-            {{ form.as_p }}
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
 
             <div class="mt-3">
 
