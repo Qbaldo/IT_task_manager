@@ -41,7 +41,9 @@ def worker_create(request):
     if request.method == 'POST':
         form = WorkerForm(request.POST)
         if form.is_valid():
-            form.save()
+            worker = form.save(commit=False)
+            worker.set_password(form.cleaned_data["password"])
+            worker.save()
             return redirect('worker-list')
     else:
         form = WorkerForm()
@@ -53,7 +55,9 @@ def worker_update(request, pk):
     if request.method == 'POST':
         form = WorkerForm(request.POST, instance=worker)
         if form.is_valid():
-            form.save()
+            worker = form.save(commit=False)
+            worker.set_password(form.cleaned_data["password"])
+            worker.save()
             return redirect('worker-list')
     else:
         form = WorkerForm(instance=worker)

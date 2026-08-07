@@ -1,5 +1,3 @@
-
-
 from django import forms
 from .models import Position, Worker, TaskType, Task
 
@@ -11,9 +9,18 @@ class PositionForm(forms.ModelForm):
 
 
 class WorkerForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
         model = Worker
-        fields = '__all__'
+        fields = [
+            "username",
+            "password",
+            "first_name",
+            "last_name",
+            "email",
+            "position",
+        ]
 
 class TaskTypeForm(forms.ModelForm):
     class Meta:
