@@ -58,5 +58,9 @@ class Task(models.Model):
     assignees = models.ManyToManyField(Worker)
     class Meta:
         ordering = ["name"]
+        permissions = [
+            ("complete_task", "Can complete task"),
+        ]
+
     def __str__(self):
         return f"{self.task_type.name} {self.name}"
