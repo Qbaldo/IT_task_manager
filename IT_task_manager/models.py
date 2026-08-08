@@ -1,11 +1,19 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
+from django.db.models import SET_NULL
 
 
 class Position(models.Model):
     name = models.CharField(
         max_length=100,
         unique=True,
+    )
+
+    group = models.ForeignKey(
+        Group,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
     )
 
     class Meta:
@@ -16,7 +24,7 @@ class Position(models.Model):
 
 
 class Worker(AbstractUser):
-    position = models.ForeignKey(Position, on_delete=models.CASCADE, blank=True, null=True)
+    position = models.ForeignKey(Position, on_delete=SET_NULL, blank=True, null=True)
 
     def __str__(self):
         position_name = self.position.name if self.position else "Brak stanowiska"
