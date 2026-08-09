@@ -98,6 +98,8 @@ def task_create(request):
     return render(request, 'task_manager/Task_form.html', {'form': form})
 
 @login_required (login_url='login')
+@permission_required("IT_task_manager.change_task",
+                     raise_exception=True)
 def task_update(request, pk):
     task = get_object_or_404(Task, pk=pk)
     if request.method == "POST":
@@ -132,6 +134,8 @@ def task_complete(request, pk):
     )
 
 @login_required (login_url='login')
+@permission_required("IT_task_manager.delete_task",
+                     raise_exception=True)
 def task_delete(request, pk):
     task = get_object_or_404(Task, pk=pk)
     task.delete()
