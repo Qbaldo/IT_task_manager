@@ -76,8 +76,12 @@ def task_list(request):
     return render(request, 'task_manager/task_list.html', {'tasks': tasks})
 
 @login_required (login_url='login')
+@permission_required("IT_task_manager.view_task",
+                     raise_exception=True)
 def task_detail(request, pk):
-    task = get_object_or_404(Task, pk=pk)
+    task = get_object_or_404(
+        Task.objects.filter(assignees=request.user),
+        pk=pk)
     return render(request, 'task_manager/task_detail.html', {'task': task})
 
 @login_required (login_url='login')
@@ -105,6 +109,27 @@ def task_update(request, pk):
         form = TaskForm(instance=task)
     return render(request, "task_manager/task_form.html", {"form": form})
 
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.complete_task",
+    raise_exception=True,
+)
+def task_complete(request, pk):
+    task = get_object_or_404(
+        Task.objects.filter(assignees=request.user),
+        pk=pk,
+    )
+
+    if request.method == "POST":
+        task.is_completed = True
+        task.save(update_fields=["is_completed"])
+        return redirect("task-detail", pk=task.pk)
+
+    return render(
+        request,
+        "task_manager/task_complete.html",
+        {"task": task},
+    )
 
 @login_required (login_url='login')
 def task_delete(request, pk):

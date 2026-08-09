@@ -1,0 +1,22 @@
+{% block content %}
+
+<h2>✅ Complete Task</h2>
+
+<p>
+    Are you sure you want to close <strong>{{ task.name }}</strong>?
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit" class="btn btn-success">
+        ✅ Complete
+    </button>
+
+    <a href="{% url 'task-detail' task.pk %}"
+       class="btn btn-outline-secondary">
+        Cancel
+    </a>
+</form>
+
+{% endblock %}
