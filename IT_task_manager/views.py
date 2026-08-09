@@ -1,6 +1,5 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import DetailView
 from .models import Position, Worker, Task, TaskType
 from .forms import PositionForm, WorkerForm, TaskTypeForm, TaskForm
 
@@ -70,8 +69,10 @@ def worker_delete(request, pk):
     return redirect('worker-list')
 
 @login_required (login_url='login')
+@permission_required("IT_task_manager.view_task",
+                     raise_exception=True)
 def task_list(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(assignees=request.user)
     return render(request, 'task_manager/task_list.html', {'tasks': tasks})
 
 @login_required (login_url='login')
@@ -80,12 +81,14 @@ def task_detail(request, pk):
     return render(request, 'task_manager/task_detail.html', {'task': task})
 
 @login_required (login_url='login')
+@permission_required("IT_task_manager.add_task",
+                     raise_exception=True)
 def task_create(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('task-list')
+            return redirect("task-list")
     else:
         form = TaskForm()
     return render(request, 'task_manager/Task_form.html', {'form': form})
