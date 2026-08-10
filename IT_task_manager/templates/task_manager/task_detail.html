@@ -7,7 +7,14 @@
   <ul>
       <li><strong>Task Type:</strong> {{ task.task_type }}</li>
       <li><strong>Description:</strong> {{ task.description }}</li>
-      <li><strong>Assignees:</strong> {{ task.assignees }}</li>
+      <li>
+        <strong>Assignees:</strong>
+        {% for worker in task.assignees.all %}
+            {{ worker }}
+            {% empty %}
+            No assignees
+        {% endfor %}
+      </li>
 
   </ul>
   {% if perms.IT_task_manager.complete_task and not task.is_completed %}

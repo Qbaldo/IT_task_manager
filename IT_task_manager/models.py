@@ -25,6 +25,13 @@ class Position(models.Model):
 
 class Worker(AbstractUser):
     position = models.ForeignKey(Position, on_delete=SET_NULL, blank=True, null=True)
+    supervisor = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="team",
+    )
 
     def __str__(self):
         position_name = self.position.name if self.position else "Brak stanowiska"

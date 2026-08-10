@@ -72,7 +72,7 @@ def worker_delete(request, pk):
 @permission_required("IT_task_manager.view_task",
                      raise_exception=True)
 def task_list(request):
-    tasks = Task.objects.filter(assignees=request.user)
+    tasks = get_visible_tasks(request.user)
     return render(request, 'task_manager/task_list.html', {'tasks': tasks})
 
 @login_required (login_url='login')
@@ -80,8 +80,9 @@ def task_list(request):
                      raise_exception=True)
 def task_detail(request, pk):
     task = get_object_or_404(
-        Task.objects.filter(assignees=request.user),
-        pk=pk)
+        get_visible_tasks(request.user),
+        pk=pk,)
+
     return render(request, 'task_manager/task_detail.html', {'task': task})
 
 @login_required (login_url='login')
@@ -165,15 +166,10 @@ def task_type_delete(request, pk):
 
 @login_required(login_url='login')
 def index(request):
-    active_tasks = Task.objects.filter(
-        assignees=request.user,
-        is_completed=False
-    )
+    tasks = get_visible_tasks(request.user)
 
-    completed_tasks = Task.objects.filter(
-        assignees=request.user,
-        is_completed=True
-    )
+    active_tasks = tasks.filter(is_completed=False)
+    completed_tasks = tasks.filter(is_completed=True)
 
     workers_count = Worker.objects.count()
 
@@ -183,3 +179,12 @@ def index(request):
         'completed_tasks_count': completed_tasks.count(),
         'workers_count': workers_count,
     })
+
+def get_visible_tasks(user):
+    if user.groups.filter(name="Supervisor").exists():
+        return (
+                Task.objects.filter(assignees__supervisor=user)
+                | Task.objects.filter(assignees=user)
+        ).distinct()
+
+    return Task.objects.filter(assignees=user)
