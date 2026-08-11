@@ -188,9 +188,14 @@ def get_visible_tasks(user):
     ).distinct()
 
 def get_team(user):
-    team = set(user.team.all())
+    team = set()
 
-    for supervisor in user.team.all():
-        team.update(supervisor.team.all())
+    def add_team(worker):
+        for member in worker.team.all():
+            if member not in team:
+                team.add(member)
+                add_team(member)
+
+    add_team(user)
 
     return team
