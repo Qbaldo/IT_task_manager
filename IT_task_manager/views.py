@@ -119,7 +119,7 @@ def task_update(request, pk):
 )
 def task_complete(request, pk):
     task = get_object_or_404(
-        Task.objects.filter(assignees=request.user),
+        get_visible_tasks(request.user),
         pk=pk,
     )
 
@@ -181,10 +181,16 @@ def index(request):
     })
 
 def get_visible_tasks(user):
-    if user.groups.filter(name="Supervisor").exists():
-        return (
-                Task.objects.filter(assignees__supervisor=user)
-                | Task.objects.filter(assignees=user)
-        ).distinct()
+    team = get_team(user)
 
-    return Task.objects.filter(assignees=user)
+    return Task.objects.filter(
+        assignees__in=list(team) + [user]
+    ).distinct()
+
+def get_team(user):
+    team = set(user.team.all())
+
+    for supervisor in user.team.all():
+        team.update(supervisor.team.all())
+
+    return team
