@@ -25,48 +25,89 @@ def position_delete(request, pk):
     position.delete()
     return redirect('position-list')
 
-@login_required (login_url='login')
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.view_worker",
+    raise_exception=True,
+)
 def worker_list(request):
-    workers = Worker.objects.all()
-    return render(request, 'task_manager/worker_list.html', {'workers': workers})
+    workers = get_team(request.user)
 
-@login_required (login_url='login')
+    return render(
+        request,
+        "task_manager/worker_list.html",
+        {"workers": workers},
+    )
+
+
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.view_worker",
+    raise_exception=True,
+)
 def worker_detail(request, pk):
     worker = get_object_or_404(Worker, pk=pk)
-    return render(request, 'task_manager/worker_detail.html', {'worker': worker})
+    return render(
+        request,
+        "task_manager/worker_detail.html",
+        {"worker": worker},
+    )
 
-@login_required (login_url='login')
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.add_worker",
+    raise_exception=True,
+)
 def worker_create(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = WorkerForm(request.POST)
         if form.is_valid():
             worker = form.save(commit=False)
             worker.set_password(form.cleaned_data["password"])
             worker.save()
-            return redirect('worker-list')
+            return redirect("worker-list")
     else:
         form = WorkerForm()
-    return render(request, 'task_manager/worker_form.html', {'form': form})
 
-@login_required (login_url='login')
+    return render(
+        request,
+        "task_manager/worker_form.html",
+        {"form": form},
+    )
+
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.change_worker",
+    raise_exception=True,
+)
 def worker_update(request, pk):
     worker = get_object_or_404(Worker, pk=pk)
-    if request.method == 'POST':
+
+    if request.method == "POST":
         form = WorkerForm(request.POST, instance=worker)
         if form.is_valid():
             worker = form.save(commit=False)
             worker.set_password(form.cleaned_data["password"])
             worker.save()
-            return redirect('worker-list')
+            return redirect("worker-list")
     else:
         form = WorkerForm(instance=worker)
-    return render(request, 'task_manager/worker_form.html', {'form': form})
 
-@login_required (login_url='login')
+    return render(
+        request,
+        "task_manager/worker_form.html",
+        {"form": form},
+    )
+
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.delete_worker",
+    raise_exception=True,
+)
 def worker_delete(request, pk):
     worker = get_object_or_404(Worker, pk=pk)
     worker.delete()
-    return redirect('worker-list')
+    return redirect("worker-list")
 
 @login_required (login_url='login')
 @permission_required("IT_task_manager.view_task",

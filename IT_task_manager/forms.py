@@ -20,6 +20,7 @@ class WorkerForm(forms.ModelForm):
             "last_name",
             "email",
             "position",
+            "supervisor",
         ]
 
 class TaskTypeForm(forms.ModelForm):
