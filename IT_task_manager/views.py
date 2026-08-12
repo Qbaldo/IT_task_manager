@@ -183,12 +183,24 @@ def task_delete(request, pk):
     task.delete()
     return redirect('task-list')
 
-@login_required (login_url='login')
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.view_tasktype",
+    raise_exception=True,
+)
 def task_type_list(request):
     task_types = TaskType.objects.all()
-    return render(request, 'task_manager/task_type_list.html', {'task_type': task_types})
+    return render(
+        request,
+        "task_manager/task_type_list.html",
+        {"task_type": task_types},
+    )
 
 @login_required (login_url='login')
+@permission_required(
+    "IT_task_manager.add_tasktype",
+    raise_exception=True,
+)
 def task_type_create(request):
     if request.method == 'POST':
         form = TaskTypeForm(request.POST)
@@ -198,6 +210,29 @@ def task_type_create(request):
     else:
         form = TaskTypeForm()
     return render(request, 'task_manager/task_type_form.html', {'form': form})
+
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.change_tasktype",
+    raise_exception=True,
+)
+def task_type_update(request, pk):
+    task_type = get_object_or_404(TaskType, pk=pk)
+
+    if request.method == "POST":
+        form = TaskTypeForm(request.POST, instance=task_type)
+
+        if form.is_valid():
+            form.save()
+            return redirect("task-type-list")
+    else:
+        form = TaskTypeForm(instance=task_type)
+
+    return render(
+        request,
+        "task_manager/task_type_form.html",
+        {"form": form},
+    )
 
 @login_required (login_url='login')
 def task_type_delete(request, pk):
