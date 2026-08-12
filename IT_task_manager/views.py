@@ -189,7 +189,7 @@ def task_delete(request, pk):
     raise_exception=True,
 )
 def task_type_list(request):
-    task_types = TaskType.objects.all()
+    task_types = TaskType.objects.filter(is_active=True)
     return render(
         request,
         "task_manager/task_type_list.html",
@@ -241,7 +241,8 @@ def task_type_update(request, pk):
 )
 def task_type_delete(request, pk):
     task_type = get_object_or_404(TaskType, pk=pk)
-    task_type.delete()
+    task_type.is_active = False
+    task_type.save(update_fields=["is_active"])
     return redirect("task-type-list")
 
 @login_required(login_url='login')
