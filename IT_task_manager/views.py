@@ -234,11 +234,15 @@ def task_type_update(request, pk):
         {"form": form},
     )
 
-@login_required (login_url='login')
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.delete_tasktype",
+    raise_exception=True,
+)
 def task_type_delete(request, pk):
     task_type = get_object_or_404(TaskType, pk=pk)
     task_type.delete()
-    return redirect('task-type-list')
+    return redirect("task-type-list")
 
 @login_required(login_url='login')
 def index(request):
