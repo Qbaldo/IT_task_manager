@@ -3,27 +3,76 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Position, Worker, Task, TaskType
 from .forms import PositionForm, WorkerForm, TaskTypeForm, TaskForm
 
-@login_required (login_url='login')
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.view_position",
+    raise_exception=True,
+)
 def position_list(request):
     positions = Position.objects.all()
-    return render(request, 'task_manager/position_list.html', {'positions': positions})
+    return render(
+        request,
+        "task_manager/position_list.html",
+        {"positions": positions},
+    )
 
-@login_required (login_url='login')
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.add_position",
+    raise_exception=True,
+)
 def position_create(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = PositionForm(request.POST)
+
         if form.is_valid():
             form.save()
-            return redirect('position-list')
+            return redirect("position-list")
     else:
         form = PositionForm()
-    return render(request, 'task_manager/position_form.html', {'form': form})
 
-@login_required (login_url='login')
+    return render(
+        request,
+        "task_manager/position_form.html",
+        {"form": form},
+    )
+
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.change_position",
+    raise_exception=True,
+)
+def position_update(request, pk):
+    position = get_object_or_404(Position, pk=pk)
+
+    if request.method == "POST":
+        form = PositionForm(request.POST, instance=position)
+
+        if form.is_valid():
+            form.save()
+            return redirect("position-list")
+    else:
+        form = PositionForm(instance=position)
+
+    return render(
+        request,
+        "task_manager/position_form.html",
+        {"form": form},
+    )
+
+@login_required(login_url="login")
+@permission_required(
+    "IT_task_manager.delete_position",
+    raise_exception=True,
+)
 def position_delete(request, pk):
     position = get_object_or_404(Position, pk=pk)
+
+    if position.worker_set.exists():
+        return redirect("position-list")
+
     position.delete()
-    return redirect('position-list')
+    return redirect("position-list")
 
 @login_required(login_url="login")
 @permission_required(
