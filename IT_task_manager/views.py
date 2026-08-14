@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+from datetime import timedelta
 from .models import Position, Worker, Task, TaskType
 from .forms import PositionForm, WorkerForm, TaskTypeForm, TaskForm
 
@@ -76,31 +78,41 @@ def position_delete(request, pk):
 
 @login_required(login_url="login")
 @permission_required(
-    "IT_task_manager.view_worker",
-    raise_exception=True,
+  "IT_task_manager.view_worker",
+  raise_exception=True,
 )
 def worker_list(request):
-    workers = get_team(request.user)
+  workers = get_team(request.user)
 
-    return render(
-        request,
-        "task_manager/worker_list.html",
-        {"workers": workers},
-    )
+  workers = sorted(
+    workers,
+    key=lambda worker: (
+      worker.position.name if worker.position else "",
+      worker.last_name,
+      worker.first_name,
+    ),
+  )
+
+  return render(
+    request,
+    "task_manager/worker_list.html",
+    {"workers": workers},
+  )
 
 
 @login_required(login_url="login")
-@permission_required(
-    "IT_task_manager.view_worker",
-    raise_exception=True,
-)
 def worker_detail(request, pk):
-    worker = get_object_or_404(Worker, pk=pk)
-    return render(
-        request,
-        "task_manager/worker_detail.html",
-        {"worker": worker},
-    )
+  worker = get_object_or_404(Worker, pk=pk)
+
+  if worker.pk != request.user.pk:
+    if not request.user.has_perm("IT_task_manager.view_worker"):
+      raise PermissionDenied
+
+  return render(
+    request,
+    "task_manager/worker_detail.html",
+    {"worker": worker},
+  )
 
 @login_required(login_url="login")
 @permission_required(
@@ -162,8 +174,51 @@ def worker_delete(request, pk):
 @permission_required("IT_task_manager.view_task",
                      raise_exception=True)
 def task_list(request):
-    tasks = get_visible_tasks(request.user)
-    return render(request, 'task_manager/task_list.html', {'tasks': tasks})
+  tasks = get_visible_tasks(request.user)
+
+  active_tasks = sorted(
+    [task for task in tasks if not task.is_completed],
+    key=lambda task: (
+      -task.priority,
+      task.deadline,
+      task.name,
+    ),
+  )[:20]
+
+  completed_tasks = [
+    task for task in tasks
+    if task.is_completed
+  ]
+
+  history_with_date = sorted(
+    [
+      task for task in completed_tasks
+      if task.completed_at is not None
+    ],
+    key=lambda task: task.completed_at,
+    reverse=True,
+  )
+
+  history_without_date = [
+    task for task in completed_tasks
+    if task.completed_at is None
+  ]
+
+  history_tasks = (
+    history_with_date + history_without_date
+  )[:15]
+
+
+  return render(
+    request,
+    "task_manager/task_list.html",
+    {
+        "active_tasks": active_tasks,
+        "history_tasks": history_tasks,
+
+
+    },
+  )
 
 @login_required (login_url='login')
 @permission_required("IT_task_manager.view_task",
@@ -208,21 +263,22 @@ def task_update(request, pk):
     raise_exception=True,
 )
 def task_complete(request, pk):
-    task = get_object_or_404(
-        get_visible_tasks(request.user),
-        pk=pk,
-    )
+  task = get_object_or_404(
+    get_visible_tasks(request.user),
+    pk=pk,
+  )
 
-    if request.method == "POST":
-        task.is_completed = True
-        task.save(update_fields=["is_completed"])
-        return redirect("task-detail", pk=task.pk)
+  if request.method == "POST":
+    task.is_completed = True
+    task.completed_at = timezone.now()
+    task.save(update_fields=["is_completed", "completed_at"])
+    return redirect("task-detail", pk=task.pk)
 
-    return render(
-        request,
-        "task_manager/task_complete.html",
-        {"task": task},
-    )
+  return render(
+    request,
+    "task_manager/task_complete.html",
+    {"task": task},
+  )
 
 @login_required (login_url='login')
 @permission_required("IT_task_manager.delete_task",
@@ -238,11 +294,16 @@ def task_delete(request, pk):
     raise_exception=True,
 )
 def task_type_list(request):
-    task_types = TaskType.objects.filter(is_active=True)
+    active_task_types = TaskType.objects.filter(is_active=True)
+    inactive_task_types = TaskType.objects.filter(is_active=False)
+
     return render(
         request,
         "task_manager/task_type_list.html",
-        {"task_type": task_types},
+        {
+            'active_task_types': active_task_types,
+            'inactive_task_types': inactive_task_types,
+        },
     )
 
 @login_required (login_url='login')
@@ -258,6 +319,7 @@ def task_type_create(request):
             return redirect('task-type-list')
     else:
         form = TaskTypeForm()
+
     return render(request, 'task_manager/task_type_form.html', {'form': form})
 
 @login_required(login_url="login")
@@ -294,21 +356,50 @@ def task_type_delete(request, pk):
     task_type.save(update_fields=["is_active"])
     return redirect("task-type-list")
 
-@login_required(login_url='login')
+@login_required(login_url="login")
 def index(request):
-    tasks = get_visible_tasks(request.user)
+  tasks = get_visible_tasks(request.user)
 
-    active_tasks = tasks.filter(is_completed=False)
-    completed_tasks = tasks.filter(is_completed=True)
+  now = timezone.now()
 
-    workers_count = Worker.objects.count()
+  active_tasks = list(
+    tasks.filter(
+      is_completed=False,
+    ).order_by(
+      "-priority",
+      "deadline",
+      "name",
+    )[:20]
+  )
 
-    return render(request, 'task_manager/index.html', {
-        'active_tasks': active_tasks,
-        'active_tasks_count': active_tasks.count(),
-        'completed_tasks_count': completed_tasks.count(),
-        'workers_count': workers_count,
-    })
+  for task in active_tasks:
+    if task.deadline < now:
+      task.deadline_status = "overdue"
+    elif task.deadline <= now + timedelta(hours=24):
+      task.deadline_status = "soon"
+    else:
+      task.deadline_status = "normal"
+
+  completed_today_count = tasks.filter(
+    is_completed=True,
+    completed_at__date=timezone.localdate(),
+  ).count()
+
+  overdue_tasks_count = tasks.filter(
+    is_completed=False,
+    deadline__lt=now,
+  ).count()
+
+  return render(
+    request,
+    "task_manager/index.html",
+    {
+      "active_tasks": active_tasks,
+      "active_tasks_count": tasks.filter(is_completed=False).count(),
+      "completed_today_count": completed_today_count,
+      "overdue_tasks_count": overdue_tasks_count,
+    },
+  )
 
 def get_visible_tasks(user):
     team = get_team(user)

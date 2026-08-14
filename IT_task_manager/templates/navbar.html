@@ -12,7 +12,10 @@
       {% if user.is_authenticated %}
 
       <span>
-        Hi {{ user.first_name }} ({{ user.position }})! 👋
+        <a href="{% url 'worker-detail' user.pk %}"
+           class="text-decoration-none text-dark">
+          Hi {{ user.first_name }} ({{ user.position }})! 👋
+        </a>
       </span>
 
       <span>

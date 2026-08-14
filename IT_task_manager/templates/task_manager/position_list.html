@@ -4,72 +4,81 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <h1>
-        💼 Positions
-    </h1>
+  <h1>
+    💼 Positions
+  </h1>
 
+  {% if perms.IT_task_manager.add_position %}
     <a href="{% url 'position-create' %}"
        class="btn btn-primary">
-        + Add Position
+      + Add Position
     </a>
+  {% endif %}
 
 </div>
 
 
 <div class="card shadow-sm">
 
-    <div class="card-body">
+  <div class="card-body">
 
-        <table class="table table-hover mb-0">
+    <table class="table table-hover mb-0">
 
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th class="text-end">Action</th>
-                </tr>
-            </thead>
-
-
-            <tbody>
-
-            {% for position in positions %}
-
-                <tr>
-
-                    <td>
-                        {{ position.name }}
-                    </td>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th class="text-end">Action</th>
+        </tr>
+      </thead>
 
 
-                    <td class="text-end">
+      <tbody>
 
-                        <a href="{% url 'position-delete' position.pk %}"
-                           class="btn btn-outline-danger btn-sm"
-                           onclick="return confirm('You will delete all workers on this position?');">
+        {% for position in positions %}
 
-                            Delete
+          <tr>
 
-                        </a>
+            <td>
+              {{ position.name }}
+            </td>
 
-                    </td>
 
-                </tr>
+            <td class="text-end">
 
-            {% empty %}
+              {% if perms.IT_task_manager.change_position %}
+                <a href="{% url 'position-update' position.pk %}"
+                   class="btn btn-outline-primary btn-sm">
+                  Update
+                </a>
+              {% endif %}
 
-                <tr>
-                    <td colspan="2" class="text-center text-muted">
-                        No Positions yet.
-                    </td>
-                </tr>
+              {% if perms.IT_task_manager.delete_position %}
+                <a href="{% url 'position-delete' position.pk %}"
+                   class="btn btn-outline-danger btn-sm"
+                   onclick="return confirm('You will delete this position?');">
+                  Delete
+                </a>
+              {% endif %}
 
-            {% endfor %}
+            </td>
 
-            </tbody>
+          </tr>
 
-        </table>
+        {% empty %}
 
-    </div>
+          <tr>
+            <td colspan="2" class="text-center text-muted">
+              No Positions yet.
+            </td>
+          </tr>
+
+        {% endfor %}
+
+      </tbody>
+
+    </table>
+
+  </div>
 
 </div>
 

@@ -4,72 +4,122 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <h1>
-        🏷 Task Types
-    </h1>
+  <h1>
+    🏷 Task Types
+  </h1>
 
+  {% if perms.IT_task_manager.add_tasktype %}
     <a href="{% url 'task-type-create' %}"
        class="btn btn-primary">
-        + Add Task Type
+      + Add Task Type
     </a>
+  {% endif %}
 
 </div>
 
 
 <div class="card shadow-sm">
 
-    <div class="card-body">
+  <div class="card-body">
 
-        <table class="table table-hover mb-0">
+    <h5 class="mb-3">
+      Active Task Types
+    </h5>
 
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th class="text-end">Action</th>
-                </tr>
-            </thead>
+    <table class="table table-hover mb-4">
+
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th class="text-end">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        {% for tasktype in active_task_types %}
+
+          <tr>
+
+            <td>
+              {{ tasktype.name }}
+            </td>
+
+            <td class="text-end">
+
+              {% if perms.IT_task_manager.change_tasktype %}
+                <a href="{% url 'task-type-update' tasktype.pk %}"
+                   class="btn btn-outline-primary btn-sm">
+                  Update
+                </a>
+              {% endif %}
+
+              {% if perms.IT_task_manager.delete_tasktype %}
+                <a href="{% url 'task-type-delete' tasktype.pk %}"
+                   class="btn btn-outline-danger btn-sm"
+                   onclick="return confirm('This task type will be deactivated.');">
+                  Deactivate
+                </a>
+              {% endif %}
+
+            </td>
+
+          </tr>
+
+        {% empty %}
+
+          <tr>
+            <td colspan="2" class="text-center text-muted">
+              No active Task Types.
+            </td>
+          </tr>
+
+        {% endfor %}
+
+      </tbody>
+
+    </table>
 
 
-            <tbody>
+    <h5 class="mb-3">
+      Inactive Task Types
+    </h5>
 
-            {% for tasktype in task_type %}
+    <table class="table table-hover">
 
-                <tr>
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
 
-                    <td>
-                        {{ tasktype.name }}
-                    </td>
+      <tbody>
 
+        {% for tasktype in inactive_task_types %}
 
-                    <td class="text-end">
+          <tr>
 
-                        <a href="{% url 'task-type-delete' tasktype.pk %}"
-                           class="btn btn-outline-danger btn-sm"
-                           onclick="return confirm('Na pewno?');">
+            <td class="text-muted">
+              {{ tasktype.name }}
+            </td>
 
-                            Delete
+          </tr>
 
-                        </a>
+        {% empty %}
 
-                    </td>
+          <tr>
+            <td class="text-center text-muted">
+              No inactive Task Types.
+            </td>
+          </tr>
 
-                </tr>
+        {% endfor %}
 
-            {% empty %}
+      </tbody>
 
-                <tr>
-                    <td colspan="2" class="text-center text-muted">
-                        No Task Types yet.
-                    </td>
-                </tr>
+    </table>
 
-            {% endfor %}
-
-            </tbody>
-
-        </table>
-
-    </div>
+  </div>
 
 </div>
 

@@ -1,35 +1,53 @@
 <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+
   <div class="position-sticky">
+
     <ul class="nav flex-column">
+
       <li class="nav-item">
         <a class="nav-link" href="{% url 'home' %}">
-            🏠 Dashboard
+          🏠 Dashboard
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'task-list' %}">
+
+
+      {% if perms.IT_task_manager.view_task %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'task-list' %}">
             📋 Task List
-        </a>
-      </li>
+          </a>
+        </li>
+      {% endif %}
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'worker-list' %}">
+
+      {% if perms.IT_task_manager.view_worker %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'worker-list' %}">
             👥 Workers List
-        </a>
-      </li>
+          </a>
+        </li>
+      {% endif %}
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'task-type-list' %}">
+
+      {% if perms.IT_task_manager.view_tasktype %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'task-type-list' %}">
             🏷 Task Types
-        </a>
-      </li>
+          </a>
+        </li>
+      {% endif %}
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'position-list' %}">
-           💼 Position List
-        </a>
-      </li>
+
+      {% if perms.IT_task_manager.view_position %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'position-list' %}">
+            💼 Position List
+          </a>
+        </li>
+      {% endif %}
 
     </ul>
+
   </div>
+
 </nav>

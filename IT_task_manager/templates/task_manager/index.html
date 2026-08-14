@@ -1,13 +1,17 @@
 {% extends "base.html" %}
+
 {% block content %}
 
-  <div class="container mt-4">
-    <h2>
-      Hi {{ user.first_name }} {{ user.last_name }}
-    </h2>
-    <div class="row mb-4">
+<div class="container mt-4">
 
-    <div class="col-md-4">
+  <h2>
+    Hi {{ user.first_name }} {{ user.last_name }}
+  </h2>
+
+
+  <div class="row mb-4">
+
+    <div class="col-12 col-sm-6 col-lg-3">
       <div class="card shadow-sm h-100">
         <div class="card-body text-center">
 
@@ -16,7 +20,7 @@
           </h5>
 
           <h2>
-                    {{ active_tasks_count }}
+            {{ active_tasks_count }}
           </h2>
 
         </div>
@@ -24,16 +28,16 @@
     </div>
 
 
-    <div class="col-md-4">
+    <div class="col-12 col-sm-6 col-lg-3">
       <div class="card shadow-sm h-100">
         <div class="card-body text-center">
 
           <h5>
-            Completed
+            Completed Today
           </h5>
 
           <h2>
-            {{ completed_tasks_count }}
+            {{ completed_today_count }}
           </h2>
 
         </div>
@@ -41,78 +45,92 @@
     </div>
 
 
-    <div class="col-md-4">
+    <div class="col-12 col-sm-6 col-lg-3">
       <div class="card shadow-sm h-100">
         <div class="card-body text-center">
 
           <h5>
-            Workers
+            Overdue
           </h5>
 
           <h2>
-            {{ workers_count }}
+            {{ overdue_tasks_count }}
           </h2>
 
         </div>
       </div>
     </div>
 
-</div>
+  </div>
 
-    <H4>
-      Your active Tasks:
-    </H4>
-<div class="row">
-  {% for task in active_tasks %}
 
-    <div class="col-md-4 mb-3">
+  <h4>
+    Your Active Tasks:
+  </h4>
 
-      <div class="card shadow-sm">
 
-        <div class="card-body">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-5">
 
-          <h5 class="card-title">
-            {{ task.name }}
-          </h5>
+    {% for task in active_tasks %}
 
-          <p class="card-text">
-            {{ task.description|truncatechars:80 }}
-          </p>
+      <div class="col mb-3">
 
-          <p>
-            Deadline:
-            {{ task.deadline|date:"d.m.Y" }}
-          </p>
+        {% if task.deadline_status == "overdue" %}
 
-          <p>
-            Priority:
-            {{ task.get_priority_display }}
-          </p>
+          <div class="card shadow-sm border-danger">
 
-          <a href="{% url 'task-detail' task.id %}"
-             class="btn btn-primary">
+        {% elif task.deadline_status == "soon" %}
 
-            Details
+          <div class="card shadow-sm border-warning">
 
-          </a>
+        {% else %}
+
+          <div class="card shadow-sm">
+
+        {% endif %}
+
+
+          <div class="card-body">
+
+            <h5 class="card-title">
+              {{ task.name }}
+            </h5>
+
+            <p class="card-text">
+              {{ task.description|truncatechars:80 }}
+            </p>
+
+            <p>
+              Deadline:
+              {{ task.deadline|date:"d.m.Y H:i" }}
+            </p>
+
+            <p>
+              Priority:
+              {{ task.get_priority_display }}
+            </p>
+
+            <a href="{% url 'task-detail' task.id %}"
+               class="btn btn-primary">
+              Details
+            </a>
+
+          </div>
 
         </div>
 
       </div>
 
-    </div>
+    {% empty %}
 
-  {% empty %}
+      <p>
+        No active tasks 🎉
+      </p>
 
-  <p>
-    No active tasks 🎉
-  </p>
+    {% endfor %}
 
-  {% endfor %}
+  </div>
 
 </div>
-
-
 
 {% endblock %}
-    

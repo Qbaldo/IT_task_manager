@@ -1,28 +1,197 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Task name: {{ task.name }}</h1>
-  <h2>Priority: {{ task.priority }}, Deadline {{ task.deadline }}</h2>
-  <h1>Is completed: {{task.is_completed}}</h1>
-  <ul>
-      <li><strong>Task Type:</strong> {{ task.task_type }}</li>
-      <li><strong>Description:</strong> {{ task.description }}</li>
-      <li>
-        <strong>Assignees:</strong>
-        {% for worker in task.assignees.all %}
-            {{ worker }}
-            {% empty %}
-            No assignees
-        {% endfor %}
-      </li>
 
-  </ul>
-  {% if perms.IT_task_manager.complete_task and not task.is_completed %}
-      <a href="{% url 'task-complete' task.pk %}" class="btn btn-success">✅ Complete task</a>
-  {% endif %}
-  <a href="{% url 'task-update' task.pk %}" class="btn btn-primary">Update</a>
-  <a href="{% url 'task-delete' task.pk %}" class="btn btn-danger" onclick="return confirm('Delete?');">Delete</a>
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+  <h1>
+    📋 Task Details
+  </h1>
+
+</div>
+
+
+<div class="card shadow-sm">
+
+  <div class="card-body">
+
+    <h2 class="mb-4">
+      {{ task.name }}
+    </h2>
+
+    <div class="mb-3">
+      <strong>Task Type:</strong>
+      {{ task.task_type.name }}
+    </div>
+
+    <div class="mb-3">
+      <strong>Priority:</strong>
+      {{ task.get_priority_display }}
+    </div>
+
+    <div class="mb-3">
+      <strong>Deadline:</strong>
+      {{ task.deadline|date:"d.m.Y H:i" }}
+    </div>
+
+    <div class="mb-3">
+      <strong>Status:</strong>
+
+      {% if task.is_completed %}
+        <span class="text-success">
+          Completed
+        </span>
+      {% else %}
+        <span class="text-warning">
+          Active
+        </span>
+      {% endif %}
+    </div>
+
+    {% if task.completed_at %}
+      <div class="mb-3">
+        <strong>Completed:</strong>
+        {{ task.completed_at|date:"d.m.Y H:i" }}
+      </div>
+    {% endif %}
+
+    <div class="mb-3">
+      <strong>Description:</strong>
+
+      <div class="mt-2">
+        {{ task.description }}
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <strong>Assignees:</strong>
+
+      <ul class="mb-0">
+        {% for worker in task.assignees.all %}
+          <li>
+            {{ worker }}
+          </li>
+        {% empty %}
+          <li class="text-muted">
+            No assignees
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+
+    <div>
+
+      {% if perms.IT_task_manager.complete_task and not task.is_completed %}
+
+        <button type="button"
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#completeTaskModal">
+          ✅ Complete Task
+        </button>
+
+      {% endif %}
+
+
+      {% if perms.IT_task_manager.change_task %}
+
+        <a href="{% url 'task-update' task.pk %}"
+           class="btn btn-primary">
+          Update
+        </a>
+
+      {% endif %}
+
+
+      {% if perms.IT_task_manager.delete_task %}
+
+        <a href="{% url 'task-delete' task.pk %}"
+           class="btn btn-danger"
+           onclick="return confirm('Are you sure you want to delete this task?');">
+          Delete
+        </a>
+
+      {% endif %}
+
+
+      <a href="{% url 'task-list' %}"
+         class="btn btn-outline-secondary">
+        Back to Tasks
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% if perms.IT_task_manager.complete_task and not task.is_completed %}
+
+  <div class="modal fade"
+       id="completeTaskModal"
+       tabindex="-1"
+       aria-labelledby="completeTaskModalLabel"
+       aria-hidden="true">
+
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h5 class="modal-title"
+              id="completeTaskModalLabel">
+            Complete Task
+          </h5>
+
+          <button type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close">
+          </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+          Are you sure you want to close
+          <strong>{{ task.name }}</strong>?
+
+        </div>
+
+
+        <div class="modal-footer">
+
+          <button type="button"
+                  class="btn btn-outline-secondary"
+                  data-bs-dismiss="modal">
+            Cancel
+          </button>
+
+          <form method="post"
+                action="{% url 'task-complete' task.pk %}">
+
+            {% csrf_token %}
+
+            <button type="submit"
+                    class="btn btn-success">
+              ✅ Complete
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+{% endif %}
 
 {% endblock %}
-
 

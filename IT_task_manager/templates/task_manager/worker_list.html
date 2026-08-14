@@ -1,19 +1,91 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
   <h1>
-    Workers list
+    👥 Workers
   </h1>
-  <a href="{% url 'worker-create' %}" class="btn btn-primary mb-3">Add Worker</a>
-  <ul>
-    {% for worker in workers %}
-      <li>
-        <a href="{% url 'worker-detail' worker.id %}">
-          {{ worker.username }} - {{ worker.first_name }} {{ worker.last_name }}
-        </a>
-      </li>
-    {% empty %}
-      <li>No workers yet.</li>
-    {% endfor %}
-  </ul>
+
+  {% if perms.IT_task_manager.add_worker %}
+    <a href="{% url 'worker-create' %}"
+       class="btn btn-primary">
+      + Add Worker
+    </a>
+  {% endif %}
+
+</div>
+
+
+<div class="card shadow-sm">
+
+  <div class="card-body">
+
+    <table class="table table-hover mb-0">
+
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th class="text-end">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        {% for worker in workers %}
+
+          <tr>
+
+            <td>
+              {% if worker.position %}
+                {{ worker.position.name }}
+              {% else %}
+                <span class="text-muted">
+                  No position
+                </span>
+              {% endif %}
+            </td>
+
+            <td>
+              {{ worker.last_name }}
+            </td>
+
+            <td>
+              {{ worker.first_name }}
+            </td>
+
+            <td class="text-end">
+
+              <a href="{% url 'worker-detail' worker.pk %}"
+                 class="btn btn-outline-primary btn-sm">
+                Details
+              </a>
+
+            </td>
+
+          </tr>
+
+        {% empty %}
+
+          <tr>
+            <td colspan="4"
+                class="text-center text-muted">
+              No workers yet.
+            </td>
+          </tr>
+
+        {% endfor %}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
 {% endblock %}
+
