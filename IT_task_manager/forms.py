@@ -23,10 +23,12 @@ class WorkerForm(forms.ModelForm):
             "supervisor",
         ]
 
+
 class TaskTypeForm(forms.ModelForm):
     class Meta:
         model = TaskType
         fields = '__all__'
+
 
 class TaskForm(forms.ModelForm):
     class Meta:

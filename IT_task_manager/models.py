@@ -24,7 +24,10 @@ class Position(models.Model):
 
 
 class Worker(AbstractUser):
-    position = models.ForeignKey(Position, on_delete=SET_NULL, blank=True, null=True)
+    position = models.ForeignKey(Position,
+                                 on_delete=SET_NULL,
+                                 blank=True,
+                                 null=True)
     supervisor = models.ForeignKey(
         "self",
         on_delete=models.SET_NULL,
@@ -34,7 +37,8 @@ class Worker(AbstractUser):
     )
 
     def __str__(self):
-        position_name = self.position.name if self.position else "Brak stanowiska"
+        position_name = (
+            self.position.name) if self.position else "Brak stanowiska"
         return f"{position_name} {self.first_name} {self.last_name}"
 
 
@@ -48,6 +52,7 @@ class TaskType(models.Model):
     def __str__(self):
         return self.name
 
+
 class Task(models.Model):
     class Priority(models.IntegerChoices):
         LOW = 1
@@ -59,9 +64,11 @@ class Task(models.Model):
     deadline = models.DateTimeField()
     is_completed = models.BooleanField(default=False)
     completed_at = models.DateTimeField(null=True, blank=True)
-    priority = models.IntegerField(choices=Priority.choices, default=Priority.MEDIUM)
+    priority = models.IntegerField(choices=Priority.choices,
+                                   default=Priority.MEDIUM)
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
     assignees = models.ManyToManyField(Worker)
+
     class Meta:
         ordering = ["name"]
         permissions = [
