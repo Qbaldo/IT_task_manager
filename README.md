@@ -47,8 +47,8 @@ Workers can always access their own profile, while access to other workers depen
 
 ## Requirements
 
-- Python
-- Django 6.0.5
+- Python 3.14
+- Django 6.0.7
 
 ## Installation
 
@@ -57,16 +57,16 @@ Clone the repository:
 git clone https://github.com/Qbaldo/IT_task_manager.git
 cd IT_task_manager
 
-Create and activate a virtual environment.
-
-## Windows
+Create and activate a virtual environment:
 
 python -m venv venv
 venv\Scripts\activate
 
-Install Django:
+## Windows
 
-pip install Django==6.0.5
+Install project dependencies:
+
+pip install -r requirements.txt
 
 Run migrations:
 

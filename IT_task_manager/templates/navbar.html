@@ -1,44 +1,27 @@
 <nav class="navbar navbar-light bg-white shadow-sm px-3">
-
   <div class="container-fluid">
-
     <span class="navbar-brand mb-0 h1">
       🗂 Task Manager
     </span>
-
-
     <div class="d-flex align-items-center gap-3">
-
       {% if user.is_authenticated %}
-
       <span>
         <a href="{% url 'worker-detail' user.pk %}"
            class="text-decoration-none text-dark">
           Hi {{ user.first_name }} ({{ user.position }})! 👋
         </a>
       </span>
-
       <span>
         🕒 {% now "d.m.Y H:i" %}
       </span>
-
-
       <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
-
         <button type="submit"
                 class="btn btn-outline-danger btn-sm">
-
           Logout
-
         </button>
-
       </form>
-
       {% endif %}
-
     </div>
-
   </div>
-
 </nav>
