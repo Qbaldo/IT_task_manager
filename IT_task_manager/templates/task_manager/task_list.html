@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>
+    📋 Tasks
+  </h1>
+  {% if perms.IT_task_manager.add_task %}
+    <a href="{% url 'task-create' %}"
+       class="btn btn-primary">
+      + Add Task
+    </a>
+  {% endif %}
+</div>
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h5 class="mb-3">
+      Active Tasks
+    </h5>
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Task Type</th>
+          <th>Priority</th>
+          <th>Deadline</th>
+          <th class="text-end">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in active_tasks %}
+          <tr>
+            <td>
+              {{ task.name }}
+            </td>
+            <td>
+              {{ task.task_type.name }}
+            </td>
+            <td>
+              {{ task.get_priority_display }}
+            </td>
+            <td>
+              {{ task.deadline|date:"d.m.Y H:i" }}
+            </td>
+            <td class="text-end">
+              <a href="{% url 'task-detail' task.pk %}"
+                 class="btn btn-outline-primary btn-sm">
+                Details
+              </a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5"
+                class="text-center text-muted">
+              No active tasks.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h5 class="mb-3">
+      Recent History
+    </h5>
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Task Type</th>
+          <th>Priority</th>
+          <th>Completed</th>
+          <th class="text-end">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in history_tasks %}
+          <tr>
+            <td>
+              {{ task.name }}
+            </td>
+            <td>
+              {{ task.task_type.name }}
+            </td>
+            <td>
+              {{ task.get_priority_display }}
+            </td>
+            <td>
+              {{ task.completed_at|date:"d.m.Y H:i" }}
+            </td>
+            <td class="text-end">
+              <a href="{% url 'task-detail' task.pk %}"
+                 class="btn btn-outline-primary btn-sm">
+                Details
+              </a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5"
+                class="text-center text-muted">
+              No completed tasks.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

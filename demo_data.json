@@ -1,0 +1,1419 @@
+[
+{
+  "model": "IT_task_manager.position",
+  "pk": 15,
+  "fields": {
+    "name": "CEO",
+    "group": 3
+  }
+},
+{
+  "model": "IT_task_manager.position",
+  "pk": 16,
+  "fields": {
+    "name": "Production Manager",
+    "group": 7
+  }
+},
+{
+  "model": "IT_task_manager.position",
+  "pk": 17,
+  "fields": {
+    "name": "Warehouse Worker",
+    "group": 4
+  }
+},
+{
+  "model": "IT_task_manager.position",
+  "pk": 18,
+  "fields": {
+    "name": "Shift Supervisor",
+    "group": 6
+  }
+},
+{
+  "model": "IT_task_manager.position",
+  "pk": 19,
+  "fields": {
+    "name": "IT Specialist",
+    "group": 5
+  }
+},
+{
+  "model": "IT_task_manager.position",
+  "pk": 20,
+  "fields": {
+    "name": "Production Worker",
+    "group": 4
+  }
+},
+{
+  "model": "IT_task_manager.position",
+  "pk": 21,
+  "fields": {
+    "name": "Warehouse Manager",
+    "group": 7
+  }
+},
+{
+  "model": "IT_task_manager.position",
+  "pk": 22,
+  "fields": {
+    "name": "Maintenance Technician",
+    "group": 5
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$eMwAFdg2d47ypnPkG5KJ8m$FdgPkYACSxsrZzu7Pjsz0410gcfY5EPKOPAPHKzZIiU=",
+    "last_login": "2026-08-14T21:13:17.459Z",
+    "is_superuser": false,
+    "username": "kowalski",
+    "first_name": "Jan",
+    "last_name": "Kowalski",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-08T21:40:54Z",
+    "position": 20,
+    "supervisor": 27,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 24,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Ai9JGI2TuxjYDtGdgOy52F$vBgASBxqOUYyHPlm/DW/Z2kRooUOpmF813XYCjrXlqs=",
+    "last_login": "2026-08-15T16:58:54.109Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Admin",
+    "last_name": "Admin",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:19:24.100Z",
+    "position": null,
+    "supervisor": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 25,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$YJBpbIn697Ju1ekQPAoCzr$w0SN6Uz/veGklRCr/cXGmEely/52KEQwGAf/B5JPYcc=",
+    "last_login": "2026-08-15T15:59:25.490Z",
+    "is_superuser": false,
+    "username": "anderson",
+    "first_name": "James",
+    "last_name": "Anderson",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:20:13.065Z",
+    "position": 15,
+    "supervisor": null,
+    "groups": [
+      3
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 26,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cNIuQlVpNp0sOER8LemswH$7UE0Ji8FQwg2SRHLmUG6fZ95tf+d32jfLZxQkdBKeBE=",
+    "last_login": "2026-08-14T22:51:32.879Z",
+    "is_superuser": false,
+    "username": "brown",
+    "first_name": "Michael",
+    "last_name": "Brown",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:21:10.198Z",
+    "position": 16,
+    "supervisor": 25,
+    "groups": [
+      7
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 27,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$9EN2XMZUbwkiGjalOv63j4$mr6RfPJZWy6MyhRxL55kq8IafqZb/vGaQViZhuTZRxs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "miller",
+    "first_name": "Anna",
+    "last_name": "Miller",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:22:08.030Z",
+    "position": 18,
+    "supervisor": 26,
+    "groups": [
+      6
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 28,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$meAh4pg2mm1Johgxar3Gun$vQKEkTQF45456yQ3XLG6MdUJSw3amX0Wl96h0tPQUcA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "smith",
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:23:50.556Z",
+    "position": 20,
+    "supervisor": 27,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 29,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Wb5qibNsHvQDl1SrWteNQw$4MspCre3UOedKLUbLQ6PHZbsoR68SCVCjKXquh4iPPw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "wilson",
+    "first_name": "Emma",
+    "last_name": "Wilson",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:24:29.875Z",
+    "position": 20,
+    "supervisor": 27,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 30,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$UkQW93zIZNcDrlZVlYx0yk$7n4vonZQUlo+ESK0o46enIT8EAZ/kF0UiMs0ZlrN73k=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "swiecicki",
+    "first_name": "úukasz",
+    "last_name": "îwiŕcicki",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:25:18.663Z",
+    "position": 20,
+    "supervisor": 27,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 31,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$EXgq46kcIMFcMD4ArzYrWY$spjwXQWStWsKsUAdNMXZaYJ0Dm/CcBgW+bfAHmwqYGQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "johnson",
+    "first_name": "David",
+    "last_name": "Johnson",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:26:13.540Z",
+    "position": 18,
+    "supervisor": 26,
+    "groups": [
+      6
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 32,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$TCCZx4fR68xTdqxnhyRx4J$OweAuWjiddsynV/46ZYWeGPs8HBftuZLRM80Q1n+nKM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "taylor",
+    "first_name": "Robert",
+    "last_name": "Taylor",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:29:10.572Z",
+    "position": 20,
+    "supervisor": 31,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 33,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$feYHCXKyjBMidQk7sZfr5l$4al+oQHmKmMgLBnJrx/NLdWd0w4x5o/hUs4AgVnbQaY=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "white",
+    "first_name": "Daniel",
+    "last_name": "White",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:30:24.187Z",
+    "position": 20,
+    "supervisor": 31,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 34,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$lMIE83AQjBIEGWUx8TtH9D$AnyuAf+jEHR3pPL0aU+0GBckPsXaHZUjb4aS91j6S1I=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "martin",
+    "first_name": "Sophie",
+    "last_name": "Martin",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:31:37.702Z",
+    "position": 20,
+    "supervisor": 31,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 35,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$frpUE0vXpJTuyvPa6LWDwC$Cpz9JuHB5xpeepdnJR6iB0CzhR0U5PFrM1dUO/YHFAs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "harris",
+    "first_name": "Oliver",
+    "last_name": "Harris",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:32:29.045Z",
+    "position": 20,
+    "supervisor": 31,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 36,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$hFExO3LOudx2nSNv7oQXnA$cqZJOx4rBY+YrKeXcJ5KYXKZQcm7LN6khkNP68JIQQY=",
+    "last_login": "2026-08-14T22:51:57.435Z",
+    "is_superuser": false,
+    "username": "davis",
+    "first_name": "Sarah",
+    "last_name": "Davis",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:33:25.135Z",
+    "position": 21,
+    "supervisor": 25,
+    "groups": [
+      7
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 37,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$4KJtGhheaRXqnJY22DjaHo$0bas9fCw4kZQd7EyN9iO8aHwbOG6WAqPtBLW3YMImoA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "willson",
+    "first_name": "Thomas",
+    "last_name": "Willson",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:36:00.749Z",
+    "position": 18,
+    "supervisor": 36,
+    "groups": [
+      6
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 38,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$PGYObgtCnCiByPmm8IqcGg$P7WSd8TUV77R/945yG/rPU+jHkCrXU6+WhvQS7C21fw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "clark",
+    "first_name": "William",
+    "last_name": "Clark",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:37:12.080Z",
+    "position": 17,
+    "supervisor": 37,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 39,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$1VqcWKRREVLLkgIvdlNsH1$XYVIE1Tgg2yy0NJf6tznLyKSRolz2WoTj8Q5G/Qx3Z8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "lewis",
+    "first_name": "Emily",
+    "last_name": "Lewis",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:38:02.013Z",
+    "position": 17,
+    "supervisor": 37,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 40,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$UbOV8feMAU5VR4bfgKZQE9$rPaC+FZOYNpXgSc4k84X+Ilo/45/QW60/dqnlyEa7xE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "walker",
+    "first_name": "Noah",
+    "last_name": "Walker",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:39:30.964Z",
+    "position": 22,
+    "supervisor": 37,
+    "groups": [
+      5
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.worker",
+  "pk": 41,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$igRWH1h4cbJgZu14Q8ImQ8$+yN1Szs579doHyp1eRVxNZ+EhAwPSaPjRs+FFiCExDk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "hall",
+    "first_name": "Mia",
+    "last_name": "Hall",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-14T22:40:12.410Z",
+    "position": 17,
+    "supervisor": 37,
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "IT_task_manager.tasktype",
+  "pk": 1,
+  "fields": {
+    "name": "Maintenance",
+    "is_active": true
+  }
+},
+{
+  "model": "IT_task_manager.tasktype",
+  "pk": 2,
+  "fields": {
+    "name": "Production",
+    "is_active": true
+  }
+},
+{
+  "model": "IT_task_manager.tasktype",
+  "pk": 3,
+  "fields": {
+    "name": "IT Support",
+    "is_active": true
+  }
+},
+{
+  "model": "IT_task_manager.tasktype",
+  "pk": 4,
+  "fields": {
+    "name": "Warehouse",
+    "is_active": true
+  }
+},
+{
+  "model": "IT_task_manager.tasktype",
+  "pk": 5,
+  "fields": {
+    "name": "Administration",
+    "is_active": true
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 37,
+  "fields": {
+    "name": "Prepare weekly production report",
+    "description": "Prepare weekly production",
+    "deadline": "2026-08-18T10:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 2,
+    "task_type": 5,
+    "assignees": [
+      36
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 38,
+  "fields": {
+    "name": "Update employee documentation",
+    "description": "Please update new employee documentation.",
+    "deadline": "2026-08-25T09:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 1,
+    "task_type": 5,
+    "assignees": [
+      36
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 39,
+  "fields": {
+    "name": "Review supplier contracts",
+    "description": "Review contract for our bearing supplier",
+    "deadline": "2026-08-16T09:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 3,
+    "task_type": 5,
+    "assignees": [
+      26
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 40,
+  "fields": {
+    "name": "Prepare monthly management report",
+    "description": "Prepare monthly management report",
+    "deadline": "2026-08-14T12:00:00Z",
+    "is_completed": true,
+    "completed_at": "2026-08-13T00:00:00Z",
+    "priority": 2,
+    "task_type": 5,
+    "assignees": [
+      26
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 41,
+  "fields": {
+    "name": "Update safety documentation",
+    "description": "At the last meeting we decided to upgrade the safety policy. Please update the documents.",
+    "deadline": "2026-08-13T15:00:00Z",
+    "is_completed": true,
+    "completed_at": "2026-08-13T00:00:00Z",
+    "priority": 1,
+    "task_type": 5,
+    "assignees": [
+      36
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 42,
+  "fields": {
+    "name": "Replace Faulty production terminal",
+    "description": "broken terminal on machine 6 in building B",
+    "deadline": "2026-08-15T23:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 3,
+    "task_type": 3,
+    "assignees": [
+      30
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 43,
+  "fields": {
+    "name": "Reset warehouse scanner",
+    "description": "scaner in building D doesn't respond",
+    "deadline": "2026-08-16T08:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 2,
+    "task_type": 3,
+    "assignees": [
+      30
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 44,
+  "fields": {
+    "name": "Configure new workstation",
+    "description": "Configure new workstation in building A",
+    "deadline": "2026-08-20T14:59:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 2,
+    "task_type": 3,
+    "assignees": [
+      30
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 45,
+  "fields": {
+    "name": "Investigate network connection issue",
+    "description": "On building C terminals randomly lose connection with server",
+    "deadline": "2026-08-13T14:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 2,
+    "task_type": 3,
+    "assignees": [
+      30
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 46,
+  "fields": {
+    "name": "Install software update on office PCs",
+    "description": "5 desktops and 6 laptops",
+    "deadline": "2026-08-12T10:00:00Z",
+    "is_completed": true,
+    "completed_at": "2026-08-11T00:00:00Z",
+    "priority": 2,
+    "task_type": 3,
+    "assignees": [
+      30
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 47,
+  "fields": {
+    "name": "Replace damaged machine bearing",
+    "description": "Replace bearing. machine 7 building A",
+    "deadline": "2026-08-15T20:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 3,
+    "task_type": 1,
+    "assignees": [
+      37
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 48,
+  "fields": {
+    "name": "Inspect hydraulic system",
+    "description": "Inspect hydraulic system in building B",
+    "deadline": "2026-08-17T09:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 2,
+    "task_type": 1,
+    "assignees": [
+      37
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 49,
+  "fields": {
+    "name": "Repair leaking pipe",
+    "description": "Water leak behind machine 2 in building B",
+    "deadline": "2026-08-14T10:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 2,
+    "task_type": 1,
+    "assignees": [
+      38
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 50,
+  "fields": {
+    "name": "Calibrate production machine",
+    "description": "Machine 4 Building B needs calibration",
+    "deadline": "2026-08-15T20:30:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 3,
+    "task_type": 2,
+    "assignees": [
+      13
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 51,
+  "fields": {
+    "name": "Check production line parameters",
+    "description": "Check line 4 Building A",
+    "deadline": "2026-08-16T20:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 2,
+    "task_type": 2,
+    "assignees": [
+      28
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 52,
+  "fields": {
+    "name": "Resolve production line stoppage",
+    "description": "In building A production line 2 stops few times a day",
+    "deadline": "2026-08-14T12:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 3,
+    "task_type": 2,
+    "assignees": [
+      29,
+      32
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 53,
+  "fields": {
+    "name": "Clean production area",
+    "description": "Mess behind stations in building C",
+    "deadline": "2026-08-13T16:00:00Z",
+    "is_completed": true,
+    "completed_at": "2026-08-11T00:00:00Z",
+    "priority": 2,
+    "task_type": 2,
+    "assignees": [
+      34,
+      35
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 54,
+  "fields": {
+    "name": "Replace worn drive belt",
+    "description": "Building C line 1",
+    "deadline": "2026-08-12T11:30:00Z",
+    "is_completed": true,
+    "completed_at": "2026-08-11T00:00:00Z",
+    "priority": 2,
+    "task_type": 1,
+    "assignees": [
+      38
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 55,
+  "fields": {
+    "name": "Repair ventilation system",
+    "description": "Repair ventilation system in building C",
+    "deadline": "2026-08-13T18:30:00Z",
+    "is_completed": true,
+    "completed_at": "2026-08-11T00:00:00Z",
+    "priority": 2,
+    "task_type": 1,
+    "assignees": [
+      37
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 56,
+  "fields": {
+    "name": "Check  current stock levels",
+    "description": "Please check current stock levels in warehouse",
+    "deadline": "2026-08-15T21:30:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 2,
+    "task_type": 4,
+    "assignees": [
+      41
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 57,
+  "fields": {
+    "name": "Prepare shipment for customer",
+    "description": "Prepare shipment number S/12554/2026",
+    "deadline": "2026-08-27T18:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 3,
+    "task_type": 4,
+    "assignees": [
+      38,
+      41
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 58,
+  "fields": {
+    "name": "Investigate missing pallet",
+    "description": "We lost somewhere one pallet",
+    "deadline": "2026-08-14T06:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 3,
+    "task_type": 4,
+    "assignees": [
+      38,
+      39,
+      41
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 59,
+  "fields": {
+    "name": "Receive supplier delivery",
+    "description": "courier name: Odinson",
+    "deadline": "2026-08-18T08:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 2,
+    "task_type": 4,
+    "assignees": [
+      41
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 60,
+  "fields": {
+    "name": "Prepare machine for new production run",
+    "description": "Building C line 1",
+    "deadline": "2026-08-15T23:00:00Z",
+    "is_completed": false,
+    "completed_at": null,
+    "priority": 3,
+    "task_type": 2,
+    "assignees": [
+      32,
+      33
+    ]
+  }
+},
+{
+  "model": "IT_task_manager.task",
+  "pk": 61,
+  "fields": {
+    "name": "Complete quality inspection",
+    "description": "Complete quality inspection on line 4 building B",
+    "deadline": "2026-08-13T08:00:00Z",
+    "is_completed": true,
+    "completed_at": "2026-08-12T12:30:00Z",
+    "priority": 2,
+    "task_type": 2,
+    "assignees": [
+      33
+    ]
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 3,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 3,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 3,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 3,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 2,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 2,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 2,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 2,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add position",
+    "content_type": 6,
+    "codename": "add_position"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change position",
+    "content_type": 6,
+    "codename": "change_position"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete position",
+    "content_type": 6,
+    "codename": "delete_position"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view position",
+    "content_type": 6,
+    "codename": "view_position"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add task type",
+    "content_type": 8,
+    "codename": "add_tasktype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change task type",
+    "content_type": 8,
+    "codename": "change_tasktype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete task type",
+    "content_type": 8,
+    "codename": "delete_tasktype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view task type",
+    "content_type": 8,
+    "codename": "view_tasktype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 9,
+    "codename": "add_worker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 9,
+    "codename": "change_worker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 9,
+    "codename": "delete_worker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 9,
+    "codename": "view_worker"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add task",
+    "content_type": 7,
+    "codename": "add_task"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change task",
+    "content_type": 7,
+    "codename": "change_task"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete task",
+    "content_type": 7,
+    "codename": "delete_task"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view task",
+    "content_type": 7,
+    "codename": "view_task"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can complete task",
+    "content_type": 7,
+    "codename": "complete_task"
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 3,
+  "fields": {
+    "name": "Executive",
+    "permissions": [
+      21,
+      22,
+      23,
+      24,
+      33,
+      34,
+      37,
+      35,
+      36,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 4,
+  "fields": {
+    "name": "Worker",
+    "permissions": [
+      37,
+      36
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 5,
+  "fields": {
+    "name": "Specialist",
+    "permissions": [
+      33,
+      34,
+      37,
+      36
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 6,
+  "fields": {
+    "name": "Supervisor",
+    "permissions": [
+      33,
+      34,
+      37,
+      36,
+      32
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 7,
+  "fields": {
+    "name": "Managment",
+    "permissions": [
+      24,
+      33,
+      34,
+      37,
+      35,
+      36,
+      25,
+      26,
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "IT_task_manager",
+    "model": "position"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "IT_task_manager",
+    "model": "task"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "IT_task_manager",
+    "model": "tasktype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "IT_task_manager",
+    "model": "worker"
+  }
+}
+]
